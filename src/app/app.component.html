@@ -1,0 +1,7 @@
+<app-main-menu [title]="title"></app-main-menu>
+<mat-progress-bar  
+	mode="indeterminate" 
+	color="accent"
+	*ngIf="auth.loading"></mat-progress-bar>
+<router-outlet></router-outlet>
+<app-footer></app-footer>

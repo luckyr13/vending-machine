@@ -1,0 +1,13 @@
+<div class="blue-window fadeIn">
+	<!-- Main body -->
+	<div *ngIf="!loading && !error">
+		<h1 class="text-center">Sign in</h1>
+		<p class="text-center">
+			<img src="assets/img/mm-logo.svg" width="260px" alt="">
+			<br>
+			<button mat-flat-button color="primary" (click)="login()">Connect wallet</button>
+		</p>
+	</div>
+	<!-- Loading -->
+	<mat-spinner class="loading-spinner" mode="indeterminate" color="primary" *ngIf="loading"></mat-spinner>
+</div>
