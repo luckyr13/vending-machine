@@ -14,7 +14,7 @@ export class AppComponent implements OnInit, OnDestroy {
   opened: boolean = false;
 
   constructor(
-  	public auth: AuthService,
+  	private auth: AuthService,
   	private snackBar: MatSnackBar
   ) {
 
@@ -49,5 +49,8 @@ export class AppComponent implements OnInit, OnDestroy {
   	this.opened = false;
   }
 
+  authIsLoading() {
+  	return this.auth.loading;
+  }
 
 }
