@@ -47,4 +47,8 @@ export class MainMenuComponent implements OnInit {
   	this.auth.logout();
   }
 
+  getMainAccount() {
+  	return this.auth.getMainAccount();
+  }
+
 }

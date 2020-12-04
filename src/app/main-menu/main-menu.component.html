@@ -1,9 +1,10 @@
-<mat-toolbar color="primary">
+<mat-toolbar class="fadeIn" color="primary">
   <button mat-icon-button class="" aria-label="Close menu" (click)="toggleMenu()">
     <mat-icon>menu</mat-icon>
   </button>
   <span>{{title}}</span>
   <span class="menu-spacer"></span>
+  <span class="main-ethereum-address">{{ getMainAccount() }}</span>
   <button mat-icon-button 
     color="accent" 
     class="" 
