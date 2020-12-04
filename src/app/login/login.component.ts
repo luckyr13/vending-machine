@@ -19,6 +19,10 @@ export class LoginComponent implements OnInit {
     this.loading = true;
   }
 
+  isLoggedIn() {
+    return !!this.auth.getMainAccount();
+  }
+
   ngOnInit(): void {
   	this.loading = false;
   }
@@ -28,7 +32,7 @@ export class LoginComponent implements OnInit {
     this.auth.requestAccounts().then((accounts) => {
       this.snackBar.open('Welcome!', 'X', {duration: 3000});
       // this.loading = false;
-      this.router.navigate(['products']);
+      // this.router.navigate(['products']);
     }).catch((reason) => {
       const msg = Object.prototype.hasOwnProperty.call(reason, 'message')
         ? reason.message : 'Connection problem';

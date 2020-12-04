@@ -1,11 +1,18 @@
 <div class="blue-window fadeInTransparent">
 	<!-- Main body -->
-	<div *ngIf="!loading && !error">
+	<div *ngIf="!loading && !error && !isLoggedIn()">
 		<h1 class="text-center">Sign in</h1>
 		<p class="text-center">
 			<img src="assets/img/mm-logo.svg" width="260px" alt="">
 			<br>
 			<button mat-flat-button color="primary" (click)="login()">Connect wallet</button>
+		</p>
+	</div>
+	<!-- If wallet is already connected -->
+	<div *ngIf="!loading && isLoggedIn()">
+		<p class="text-center">
+			<br><br>Wallet is connected ...<br><br>
+			<button mat-flat-button color="warn" routerLink="/products"><mat-icon>shop</mat-icon>&nbsp;&nbsp;Buy some products</button>
 		</p>
 	</div>
 	<!-- Loading -->

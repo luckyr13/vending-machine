@@ -12,9 +12,9 @@ export class MainMenuComponent implements OnInit {
 	@Input() walletNotFound: boolean = true;
   @Output() openEvent: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Input() opened: boolean;
-  
+
   constructor(
-  	public auth: AuthService,
+  	private auth: AuthService,
   	private snackBar: MatSnackBar
   ) {
 
@@ -22,6 +22,10 @@ export class MainMenuComponent implements OnInit {
 
   ngOnInit(): void {
   	
+  }
+
+  isLoggedIn() {
+  	return !!this.auth.getMainAccount();
   }
 
   toggleMenu() {
