@@ -7,10 +7,15 @@ import { DisplayProductsComponent } from './display-products/display-products.co
 import { LoginComponent } from './login/login.component';
 import { DetectMetamaskGuard } from './auth/detect-metamask.guard';
 import { AuthGuard } from './auth/auth.guard';
+import { AboutComponent } from './about/about.component';
 
 const routes : Routes = [
 	{
 		path: 'products', component: DisplayProductsComponent,
+		canActivate: [DetectMetamaskGuard, AuthGuard]
+	},
+	{
+		path: 'about', component: AboutComponent,
 		canActivate: [DetectMetamaskGuard, AuthGuard]
 	},
 	{

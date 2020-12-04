@@ -12,6 +12,12 @@ export class AppComponent implements OnInit, OnDestroy {
   walletNotFound : boolean = true;
   subscriptionAccountsChanged: any = null;
   opened: boolean = false;
+  menu = [
+  	{path: 'login', label:'Sign in', icon: 'login'},
+  	{path: 'products', label:'Products', icon: 'shop'},
+  	{path: 'about', label:'About the machine', icon: 'info'},
+
+  ];
 
   constructor(
   	private auth: AuthService,
@@ -29,6 +35,7 @@ export class AppComponent implements OnInit, OnDestroy {
   				// Set listeners for change in wallet accounts
   				if (data) {
   					this.auth.onAccountsChanged();
+            this.auth.onChainChanged();
   				}
 		  	});
   		}

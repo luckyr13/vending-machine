@@ -7,8 +7,8 @@ import Web3 from 'web3';
   providedIn: 'root'
 })
 export class AuthService {
-	provider: any = null;
-	web3: any = null;
+	private provider: any = null;
+	public web3: any = null;
 	private accounts: string[];
 	public loading: boolean = false;
 
@@ -86,6 +86,9 @@ export class AuthService {
     return null;
   }
 
+  /*
+  *  It doesn't work
+  */
   logout() {
     if (this.provider && this.provider.close) {
       this.provider.close();

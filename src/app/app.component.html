@@ -19,16 +19,10 @@
 		  <div mat-subheader>
 		    <span>MENU</span>
 		  </div>
-		  <div>
-		  	<a class="menu-item" mat-list-item [routerLink]="['login']" routerLinkActive="active" (click)="closeMenu()">
-		    	<mat-icon>login</mat-icon>
-		    	<span>Sign in</span>
-		    </a>
-		  </div>
-		  <div>
-		  	<a class="menu-item" mat-list-item [routerLink]="['products']" routerLinkActive="active" (click)="closeMenu()">
-		    	<mat-icon>shop</mat-icon>
-		    	<span>Products</span>
+		  <div *ngFor="let m of menu">
+		  	<a class="menu-item" mat-list-item [routerLink]="[m.path]" routerLinkActive="active" (click)="closeMenu()">
+		    	<mat-icon>{{m.icon}}</mat-icon>
+		    	<span>{{m.label}}</span>
 		    </a>
 		  </div>
 		</mat-nav-list>

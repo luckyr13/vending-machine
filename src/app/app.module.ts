@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
@@ -20,6 +21,7 @@ import { DisplayProductsComponent } from './display-products/display-products.co
 import { LoginComponent } from './login/login.component';
 import { FooterComponent } from './footer/footer.component';
 import { WalletNotFoundComponent } from './wallet-not-found/wallet-not-found.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -29,10 +31,12 @@ import { WalletNotFoundComponent } from './wallet-not-found/wallet-not-found.com
     DisplayProductsComponent,
     LoginComponent,
     FooterComponent,
-    WalletNotFoundComponent
+    WalletNotFoundComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     MatToolbarModule,
     MatIconModule,

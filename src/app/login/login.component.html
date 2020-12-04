@@ -10,8 +10,8 @@
 	</div>
 	<!-- If wallet is already connected -->
 	<div *ngIf="!loading && isLoggedIn()">
+		<h2 class="text-center">Wallet connected :)</h2>
 		<p class="text-center">
-			<br><br>Wallet is connected ...<br><br>
 			<button mat-flat-button color="warn" routerLink="/products"><mat-icon>shop</mat-icon>&nbsp;&nbsp;Buy some products</button>
 		</p>
 	</div>
