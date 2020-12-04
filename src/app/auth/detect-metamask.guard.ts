@@ -7,7 +7,7 @@ import { AuthService } from './auth.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
+export class DetectMetamaskGuard implements CanActivate {
   constructor(private auth: AuthService, private router: Router) {
 
   }
@@ -15,18 +15,16 @@ export class AuthGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return this.auth.setAccounts().then((data) => {
-    	console.log('Accounts: ' + JSON.stringify(data));
-    	if (data && data.length) {
-    		return true;
+    return (this.auth.detectMetamask().then((res) => {
+    	if (!res) {
+    		this.router.navigate(['wallet-not-found']);
     	}
-    	this.router.navigate(['login']);
-    	return false;
+    	return res;
     }).catch((reason) => {
-    	console.error('Error: ' + reason);
-    	this.router.navigate(['login']);
-    	return false;
-    });
+    	this.router.navigate(['wallet-not-found']);
+    	console.error(`ERRACTIVATION: ${reason}`);
+      return false;
+    }));
   }
   
 }

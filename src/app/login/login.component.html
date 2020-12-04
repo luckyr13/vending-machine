@@ -1,4 +1,4 @@
-<div class="blue-window fadeIn">
+<div class="blue-window fadeInTransparent">
 	<!-- Main body -->
 	<div *ngIf="!loading && !error">
 		<h1 class="text-center">Sign in</h1>
@@ -11,3 +11,4 @@
 	<!-- Loading -->
 	<mat-spinner class="loading-spinner" mode="indeterminate" color="primary" *ngIf="loading"></mat-spinner>
 </div>
+<app-footer></app-footer>

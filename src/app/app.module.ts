@@ -7,6 +7,9 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatListModule} from '@angular/material/list';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -37,6 +40,9 @@ import { WalletNotFoundComponent } from './wallet-not-found/wallet-not-found.com
     MatSnackBarModule,
     MatProgressBarModule,
     MatProgressSpinnerModule,
+    MatTooltipModule,
+    MatSidenavModule,
+    MatListModule,
     AppRoutingModule
   ],
   providers: [],

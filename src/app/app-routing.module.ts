@@ -5,16 +5,17 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { WalletNotFoundComponent } from './wallet-not-found/wallet-not-found.component';
 import { DisplayProductsComponent } from './display-products/display-products.component';
 import { LoginComponent } from './login/login.component';
+import { DetectMetamaskGuard } from './auth/detect-metamask.guard';
 import { AuthGuard } from './auth/auth.guard';
 
 const routes : Routes = [
 	{
 		path: 'products', component: DisplayProductsComponent,
-		canActivate: [AuthGuard]
+		canActivate: [DetectMetamaskGuard, AuthGuard]
 	},
 	{
 		path: 'login', component: LoginComponent,
-		canActivate: [AuthGuard]
+		canActivate: [DetectMetamaskGuard]
 	},
 	{
 		path: 'wallet-not-found', component: WalletNotFoundComponent

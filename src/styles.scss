@@ -73,6 +73,15 @@ body {
 
 }
 
+.fadeInTransparent {
+  -webkit-animation: fadeintransparent 1s; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: fadeintransparent 1s; /* Firefox < 16 */
+  -ms-animation: fadeintransparent 1s; /* Internet Explorer */
+  -o-animation: fadeintransparent 1s; /* Opera < 12.1 */
+  animation: fadeintransparent 1s;
+
+}
+
 /* FADE IN */
 @keyframes fadein {
     from { opacity: 0; }
@@ -104,3 +113,63 @@ body {
 }
 
 /* /FADE IN */
+
+
+/* FADE IN */
+@keyframes fadeintransparent {
+    from { opacity: 0; }
+    to   { opacity: 0.95; }
+}
+
+/* Firefox < 16 */
+@-moz-keyframes fadeintransparent {
+    from { opacity: 0; }
+    to   { opacity: 0.95; }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadeintransparent {
+    from { opacity: 0; }
+    to   { opacity: 0.95; }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadeintransparent {
+    from { opacity: 0; }
+    to   { opacity: 0.95; }
+}
+
+/* Opera < 12.1 */
+@-o-keyframes fadeintransparent {
+    from { opacity: 0; }
+    to   { opacity: 0.95; }
+}
+
+/* /FADE IN */
+
+
+mat-toolbar.mat-toolbar {
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.3);
+}
+
+
+/* The emerging W3C standard
+   that is currently Firefox-only */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #000 #EDEDED;
+}
+
+/* Works on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;
+}
+*::-webkit-scrollbar-track {
+  background: #EDEDED;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: #000;
+  border-radius: 20px;
+  border: 3px solid #EDEDED;
+}
+

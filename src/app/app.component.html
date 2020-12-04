@@ -1,7 +1,40 @@
-<app-main-menu [title]="title"></app-main-menu>
+<app-main-menu 
+	(openEvent)="toggleSidenav($event)"
+	[opened]="opened"
+	[title]="title" 
+	[walletNotFound]="walletNotFound"></app-main-menu>
 <mat-progress-bar  
 	mode="indeterminate" 
 	color="accent"
 	*ngIf="auth.loading"></mat-progress-bar>
-<router-outlet></router-outlet>
-<app-footer></app-footer>
+<mat-sidenav-container>
+  <mat-sidenav #sidenav 
+  	mode="over" 
+  	autoFocus="false"
+  	[(opened)]="opened"
+  	role="navigation">
+  	
+  	<mat-nav-list>
+		  <div mat-subheader>
+		    <span>MENU</span>
+		  </div>
+		  <div>
+		  	<a class="menu-item" mat-list-item [routerLink]="['login']" routerLinkActive="active" (click)="closeMenu()">
+		    	<mat-icon>lock</mat-icon>
+		    	<span>Sign in</span>
+		    </a>
+		  </div>
+		  <div>
+		  	<a class="menu-item" mat-list-item [routerLink]="['products']" routerLinkActive="active" (click)="closeMenu()">
+		    	<mat-icon>shop</mat-icon>
+		    	<span>Products</span>
+		    </a>
+		  </div>
+		</mat-nav-list>
+
+
+  </mat-sidenav>
+  <mat-sidenav-content role="main">
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

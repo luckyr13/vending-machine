@@ -9,29 +9,37 @@ import Web3 from 'web3';
 export class AuthService {
 	provider: any = null;
 	web3: any = null;
-	accounts: string[];
+	private accounts: string[];
 	public loading: boolean = false;
 
   constructor() { }
 
-  async detectMetamask(router: Router) {
+  async detectMetamask(): Promise<boolean> {
+    if (this.provider && this.web3) {
+      return true;
+    }
+
   	this.loading = true;
   	try {
   		this.provider = await detectEthereumProvider();
   	} catch (err) {
-  		console.error(`ERRdetectMetamask: ${err}`);
+  		throw Error(`ERRdetectMetamask: ${err}`);
   	}
   	this.loading = false;
 		if (this.provider) {
 		  // From now on, this should always be true:
 		  // provider === window.ethereum
-		  console.log('Wallet provider found!');
+      if (this.provider !== window.ethereum) {
+        console.error('Do you have multiple wallets installed?');
+        return false;
+      } else {
+        console.log('Wallet provider found!');
+      }
 		  this.web3 = new Web3(this.provider);
 		  return true;
 		} else {
 		  // if the provider is not detected, detectEthereumProvider resolves to null
-		  console.error('Please install MetaMask!');
-		  router.navigate(['wallet-not-found']);
+		  throw Error('Please install MetaMask!');
 		}
 		return false;
   }
@@ -50,4 +58,57 @@ export class AuthService {
   	}
 		return this.accounts;
 	}
+
+  async setAccounts(): Promise<string[]> {
+    this.loading = true;
+    try {
+      this.accounts = await this.web3.eth.getAccounts();
+      this.loading = false;
+    } catch (err) {
+      this.loading = false;
+      const msg = Object.prototype.hasOwnProperty.call(err, 'message')
+        ? err.message : 'Connection problem';
+        
+      throw Error(`ERRsetAccounts: ${msg}`);
+    }
+
+    return this.accounts;
+  }
+
+  getAccounts(): string[] {
+    return this.accounts;
+  }
+
+  public getMainAccount(): string {
+    if (this.accounts && this.accounts[0]) {
+      return this.accounts[0];
+    }
+    return null;
+  }
+
+  logout() {
+    if (this.provider && this.provider.close) {
+      this.provider.close();
+    }
+    if (this.web3 && this.web3.close) {
+      this.web3.close();
+    }
+  }
+
+  onAccountsChanged() {
+    this.provider.on('accountsChanged', (data) => {
+      window.location.reload();
+    });
+  }
+
+  onChainChanged() {
+    this.provider.on('chainChanged', (chainId) => {
+      // Handle the new chain.
+      // Correctly handling chain changes can be complicated.
+      // We recommend reloading the page unless you have a very good reason not to.
+      window.location.reload();
+    });
+  }
+
+
 }
