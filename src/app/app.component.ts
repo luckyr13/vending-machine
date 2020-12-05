@@ -12,6 +12,9 @@ export class AppComponent implements OnInit, OnDestroy {
   walletNotFound : boolean = true;
   subscriptionAccountsChanged: any = null;
   opened: boolean = false;
+  network: string;
+  mainAddress: string;
+
   menu = [
   	{path: 'login', label:'Sign in', icon: 'login'},
   	{path: 'products', label:'Products', icon: 'shop'},
@@ -32,11 +35,20 @@ export class AppComponent implements OnInit, OnDestroy {
   		if (res) {
   			// Set access to wallet accounts
   			this.auth.setAccounts().then((data) => {
+          // Get main account address
+          if (data && data.length) {
+            this.mainAddress = this.auth.getMainAccount();
+          }
   				// Set listeners for change in wallet accounts
-  				if (data) {
-  					this.auth.onAccountsChanged();
-            this.auth.onChainChanged();
-  				}
+					this.auth.onAccountsChanged();
+          this.auth.onChainChanged();
+				
+          // Get network's name 
+          this.auth.setNetworkName().then((network) => {
+            this.network = network;
+          }).catch((reason) => { 
+            this.snackBar.open(`Error network name: ${reason}`, 'X', {duration: 3000});
+          });
 		  	});
   		}
   	}).catch((reason) => {

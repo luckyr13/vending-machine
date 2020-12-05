@@ -1,3 +1,22 @@
+$small-height: 32px;
+$big-height: 40px;
+
 .main-ethereum-address {
 	font-size: 12px;
+}
+
+.secondary-toolbar {
+	background-color: #000;
+	color: #FFF;
+	height: $big-height;
+}
+
+@media (min-width: 600px) {
+  
+	.secondary-toolbar {
+		height: $small-height;
+	}
+	.main-ethereum-address {
+		line-height: $small-height;
+	}
 }

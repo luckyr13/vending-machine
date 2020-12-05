@@ -52,10 +52,51 @@ export class VendingMachineService {
   }
 
   getName() : Promise<any> {
-  	console.log('contrato', this.contract)
-  	// return this.contract.methods.name().call({from: this.auth.getMainAccount()});
     return (this.contract.methods.name().call({
       from: this.auth.getMainAccount()
+    }));
+  }
+
+  getBirthdate() : Promise<any> {
+    return (this.contract.methods.birthdate().call({
+      from: this.auth.getMainAccount()
+    }));
+  }
+
+  getTotalSales() : Promise<any> {
+    return (this.contract.methods.totalSales().call({
+      from: this.auth.getMainAccount()
+    }));
+  }
+
+  getTopClient() : Promise<any> {
+    return (this.contract.methods.topClient().call({
+      from: this.auth.getMainAccount()
+    }));
+  }
+
+  getActiveProducts()  : Promise<any> {
+    return (this.contract.methods.getActiveProducts().call({
+      from: this.auth.getMainAccount()
+    }));
+  }
+
+  getLastCustomers(max: number)  : Promise<any> {
+    return (this.contract.methods.getLastCustomers(max).call({
+      from: this.auth.getMainAccount()
+    }));
+  }
+
+  getOwner()  : Promise<any> {
+    return (this.contract.methods.owner().call({
+      from: this.auth.getMainAccount()
+    }));
+  }
+
+  buyProduct(productId: number, quantity: number, ether: number)  : Promise<any> {
+    return (this.contract.methods.buyProduct().send({
+      from: this.auth.getMainAccount(),
+      value: ether
     }));
   }
 

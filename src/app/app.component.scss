@@ -18,9 +18,17 @@ mat-sidenav {
 }
 
 mat-sidenav-container {
-  height: 100% !important;
+	height: 86%;
   color: #000000;
 }
+
+@media (min-width: 600px) {
+	mat-sidenav-container {
+		height: 92%;
+	  color: #000000;
+	}
+}
+
 
 .menu-item {
 	width: 100%;

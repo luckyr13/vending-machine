@@ -299,19 +299,6 @@ contract VendingMachine is Ownable
 	}
 
 	
-
-	/*
-	*	Get machine's age in seconds
-	*/
-	function getMachineAgeInSeconds() 
-		external view 
-		contractMustBeActive 
-		returns(uint256) 
-	{
-		uint256 timeInSeconds = block.timestamp;
-		return timeInSeconds.sub(birthdate).div(1 seconds);
-	} 
-	
 	/*
 	*	Get the list of the last _max customers
 	*/

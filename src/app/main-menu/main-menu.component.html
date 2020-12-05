@@ -4,7 +4,6 @@
   </button>
   <span>{{title}}</span>
   <span class="menu-spacer"></span>
-  <span class="main-ethereum-address">{{ getMainAccount() }}</span>
   <button mat-icon-button 
     color="accent" 
     class="" 
@@ -23,3 +22,13 @@
     <mat-icon>lock_open</mat-icon>
   </button>
 </mat-toolbar>
+<div class="secondary-toolbar fadeIn container-fluid">
+  <div class="row">
+    <div class="main-ethereum-address col-12 col-md-6 text-left" *ngIf="network">
+      <span class="green">Network:</span> {{ network }}
+    </div>
+    <div class="main-ethereum-address col-12 col-md-6 text-right" *ngIf="mainAddress">
+      <span class="green">Address:</span> {{ mainAddress }}
+    </div> 
+  </div> 
+</div>

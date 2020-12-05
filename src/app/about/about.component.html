@@ -1,9 +1,30 @@
 <div class="blue-window green-glow fadeInTransparent">
-	<h1 class="text-center">About</h1>
-	<div class="text-center">
-		<p class="red">
-			Name: Machine
-		</p>
+	<h1 class="text-center">About the machine</h1>
+	<div>
+		<div class="container text-center fadeIn" *ngIf="!error">
+			<p *ngIf="machineName">
+				Hi! I'm {{ machineName }}. I am {{ machineAgeInSeconds | number:'1.2-2' }} seconds old, that's around {{ machineAgeInSeconds / (24*3600)  | number:'1.2-2' }} human days. I was created in {{ birthdate }}.
+			</p>
+			<p *ngIf="owner">
+				<strong class="red">My owner:</strong> {{ owner }}.
+			</p>
+			<p *ngIf="contractAddress">
+				<strong class="red">My address:</strong> {{ contractAddress }}.
+			</p>
+			<p *ngIf="topClient">
+				<strong class="red">Top client:</strong> {{ topClient }}.
+			</p>
+			<p *ngIf="totalSales">
+				<strong class="red">Total sales:</strong> {{ totalSales }}.
+			</p>
+			<p *ngIf="lastCustomers">
+				<strong class="red">Last 20 customers:</strong> {{ lastCustomers }}.
+			</p>
+		</div>
+		<div class="container text-center red fadeIn" *ngIf="error">
+			Couln't connect to Vending Machine's contract.<br>
+			Please verify that your wallet is connected to the right network (ROPSTEN).
+		</div>
 	</div>
 </div>
 <app-footer></app-footer>

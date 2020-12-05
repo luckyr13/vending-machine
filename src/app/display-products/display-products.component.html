@@ -1,9 +1,15 @@
 <div class="blue-window purple-glow fadeInTransparent">
-	<h1 class="text-center">PRODUCTS</h1>
-	<div class="text-center">
-		<p>
-			Products
-		</p>
+	<h1 class="text-center">Products</h1>
+	<div>
+		<div class="container text-center fadeIn" *ngIf="!error">
+			<p >
+				Product list
+			</p>
+		</div>
+		<div class="container text-center red fadeIn" *ngIf="error">
+			Couln't connect to Vending Machine's contract.<br>
+			Please verify that your wallet is connected to the right network (ROPSTEN).
+		</div>
 	</div>
 </div>
 <app-footer></app-footer>

@@ -16,7 +16,7 @@ const routes : Routes = [
 	},
 	{
 		path: 'about', component: AboutComponent,
-		canActivate: [DetectMetamaskGuard, AuthGuard]
+		canActivate: [DetectMetamaskGuard]
 	},
 	{
 		path: 'login', component: LoginComponent,

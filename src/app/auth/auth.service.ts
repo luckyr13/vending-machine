@@ -11,6 +11,14 @@ export class AuthService {
 	public web3: any = null;
 	private accounts: string[];
 	public loading: boolean = false;
+  private network: string;
+  private networkIdToName = {
+      1: 'Mainnet',
+      3: 'Ropsten',
+      42: 'Kovan',
+      4: 'Rinkeby',
+      5: 'Goerli'
+  };
 
   constructor() { }
 
@@ -84,6 +92,18 @@ export class AuthService {
       return this.accounts[0];
     }
     return null;
+  }
+
+  public setNetworkName() {
+    return this.web3.eth.getChainId().then((networkId) => {
+      const network = Object.prototype.hasOwnProperty.call(
+        this.networkIdToName,
+        networkId
+      ) ? this.networkIdToName[networkId] : `NetworkId=${networkId}`;
+      
+      this.network = network;
+      return this.network;
+    });
   }
 
   /*

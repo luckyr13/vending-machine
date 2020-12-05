@@ -12,6 +12,8 @@ export class MainMenuComponent implements OnInit {
 	@Input() walletNotFound: boolean = true;
   @Output() openEvent: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Input() opened: boolean;
+  @Input() network: string;
+  @Input() mainAddress: string;
 
   constructor(
   	private auth: AuthService,
@@ -21,7 +23,6 @@ export class MainMenuComponent implements OnInit {
   }
 
   ngOnInit(): void {
-  	
   }
 
   isLoggedIn() {
@@ -47,8 +48,7 @@ export class MainMenuComponent implements OnInit {
   	this.auth.logout();
   }
 
-  getMainAccount() {
-  	return this.auth.getMainAccount();
-  }
+
+
 
 }
