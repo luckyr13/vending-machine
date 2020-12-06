@@ -14,6 +14,7 @@ export class DisplayProductsComponent implements OnInit {
   public error: boolean = false;
   public products = [];
   public loading: boolean;
+  public loadingTransaction: boolean = false;
 
   constructor(
   	private vendingMachine : VendingMachineService,
@@ -116,6 +117,7 @@ export class DisplayProductsComponent implements OnInit {
 
   async buyProduct(id, price) {
     price = this.auth.web3.utils.toWei(price);
+    this.loadingTransaction = true;
     try {
       const receipt = await this.vendingMachine.buyProduct(id, 1, price);
       this.snackBar.open(
@@ -123,6 +125,7 @@ export class DisplayProductsComponent implements OnInit {
         'X',
         {duration: 3000}
       );
+      this.loadingTransaction = false;
 
     } catch (err) {
       this.snackBar.open(
@@ -130,6 +133,7 @@ export class DisplayProductsComponent implements OnInit {
         'X',
         {duration: 3000}
       );
+      this.loadingTransaction = false;
     }
   }
 

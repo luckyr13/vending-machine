@@ -9,7 +9,7 @@ import { tap, catchError } from 'rxjs/operators';
 })
 export class VendingMachineService {
 	private contract = null;
-	private contractAddress: string = '0xdb9f7314d38027A85714809216b61Da755D328e9';
+	private contractAddress: string = '0xB6134f8314D970d8c9Ef42d8A5575f6527540EA8';
 	private ABI = null;
 	private urlABIFile = 'assets/contracts/VendingMachine.json';
 

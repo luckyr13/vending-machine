@@ -24707,6 +24707,95 @@
     "version": "0.7.5+commit.eb77ed08.Emscripten.clang"
   },
   "networks": {
+    "3": {
+      "events": {
+        "0x0d3f2c3295ad954301ada15bc0c0f049d13bb2892b10c1ba30ee70e332a587ef": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "_productId",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "bytes32",
+              "name": "_name",
+              "type": "bytes32"
+            }
+          ],
+          "name": "NewProduct",
+          "type": "event"
+        },
+        "0xa3ed4207b1480804a4590a74f4b9cc310dc0fc839af8d10e2141ca3b72fd9348": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "_customer",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "_productId",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "_quantity",
+              "type": "uint256"
+            }
+          ],
+          "name": "NewSale",
+          "type": "event"
+        },
+        "0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "previousOwner",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "newOwner",
+              "type": "address"
+            }
+          ],
+          "name": "OwnershipTransferred",
+          "type": "event"
+        },
+        "0x88a5966d370b9919b20f3e2c13ff65706f196a4e32cc2c12bf57088f88525874": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "_customer",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "_quantity",
+              "type": "uint256"
+            }
+          ],
+          "name": "Received",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0xB6134f8314D970d8c9Ef42d8A5575f6527540EA8",
+      "transactionHash": "0x00d1f5c695eacd5c2ac84a1291c99ec9dbf6f3a11060ac1b22237299711c2dd9"
+    },
     "1337": {
       "events": {
         "0x0d3f2c3295ad954301ada15bc0c0f049d13bb2892b10c1ba30ee70e332a587ef": {
@@ -24887,7 +24976,7 @@
     }
   },
   "schemaVersion": "3.3.1",
-  "updatedAt": "2020-12-06T08:32:19.295Z",
+  "updatedAt": "2020-12-06T08:54:33.839Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",

@@ -1,3 +1,4 @@
+<mat-progress-bar style="margin-bottom: 10px;" color="accent" mode="indeterminate" *ngIf="loadingTransaction" ></mat-progress-bar>
 <div class="blue-window purple-glow fadeInTransparent">
 	<mat-progress-bar style="margin-top: -10px;" color="accent" mode="indeterminate" *ngIf="loading"></mat-progress-bar>
 	<h1 class="text-center">Products</h1>
@@ -18,7 +19,7 @@
 				    </p>
 				  </mat-card-content>
 				  <mat-card-actions>
-				    <button mat-flat-button (click)="buyProduct(prod.id, prod.price)" color="primary"><mat-icon>shopping_cart</mat-icon>BUY</button>
+				    <button mat-flat-button (click)="buyProduct(prod.id, prod.price)" color="primary" [disabled]="loadingTransaction"><mat-icon>shopping_cart</mat-icon>BUY</button>
 				  </mat-card-actions>
 				</mat-card>
 			</li>
