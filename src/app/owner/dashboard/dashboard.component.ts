@@ -69,7 +69,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
   		} else {
 
   		}
-  		this.snackBar.open(`IsOwner: ${isOwner}`, 'X', {duration: 3000});
   	}).catch((reason) => {
   		this.snackBar.open(`Error: ${reason}`, 'X', {duration: 3000});
   	});

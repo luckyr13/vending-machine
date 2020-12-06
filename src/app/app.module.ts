@@ -15,6 +15,7 @@ import { FooterComponent } from './footer/footer.component';
 import { WalletNotFoundComponent } from './wallet-not-found/wallet-not-found.component';
 import { AboutComponent } from './about/about.component';
 import { OwnerModule } from './owner/owner.module';
+import { OrdersComponent } from './orders/orders.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { OwnerModule } from './owner/owner.module';
     LoginComponent,
     FooterComponent,
     WalletNotFoundComponent,
-    AboutComponent
+    AboutComponent,
+    OrdersComponent
   ],
   imports: [
     BrowserModule,

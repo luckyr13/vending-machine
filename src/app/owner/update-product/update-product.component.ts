@@ -5,20 +5,24 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from './../../auth/auth.service';
 
 @Component({
-  selector: 'app-owner-add-product',
-  templateUrl: './add-product.component.html',
-  styleUrls: ['./add-product.component.scss']
+  selector: 'app-owner-update-product',
+  templateUrl: './update-product.component.html',
+  styleUrls: ['./update-product.component.scss']
 })
-export class AddProductComponent implements OnInit {
-	loading: boolean = false;
+export class UpdateProductComponent implements OnInit {
+		loading: boolean = false;
 	productForm: FormGroup = new FormGroup({
+		id: new FormControl('', [ Validators.required ]),
 		name: new FormControl('', [ Validators.required ]),
 		description: new FormControl('', [ Validators.required ]),
 		image: new FormControl('', [ Validators.required ]),
-		quantity: new FormControl('', [ Validators.required ]),
 		price: new FormControl('', [ Validators.required ]),
 		
 	});
+
+	get id() {
+		return this.productForm.get('id');
+	}
 
 	get name() {
 		return this.productForm.get('name');
@@ -32,14 +36,10 @@ export class AddProductComponent implements OnInit {
 		return this.productForm.get('image');
 	}
 
-	get quantity() {
-		return this.productForm.get('quantity');
-	}
-
 	get price() {
 		return this.productForm.get('price');
 	}
-
+  
   constructor(
   	private vendingMachine: VendingMachineService,
   	private snackBar: MatSnackBar,
@@ -68,30 +68,40 @@ export class AddProductComponent implements OnInit {
   		),
   		64
   	);
-  	const quantity = parseInt(this.quantity.value);
+  	const id = parseInt(this.id.value);
   	const price = parseInt(this.price.value);
 
-		// console.log(name, description, image, quantity, price);
+		console.log(name, description, image, id, price);
 		this.loading = true;
 
 		try {
-	  	this.vendingMachine.createProduct(
+			this.vendingMachine.updateProduct(
+	  		id,
 		    name,
 		    description,
 		    image,
-		    quantity,
 		    price
-		  ).then((productId) => {
+		  ).on('confirmation', (confirmationNumber, receipt) => {
 		  	this.snackBar.open(
-					`Transaction created: ${JSON.stringify(productId)}`,
+					`Transaction confirmed! ${JSON.stringify(confirmationNumber)}`,
+					'X',
+					{duration: 3000}
+				);
+				
+				alert('confirmation!')
+		  }).on('receipt', (receipt) => {
+		  	
+		  	this.snackBar.open(
+					`Transaction created: ${JSON.stringify(receipt)}`,
 					'X',
 					{duration: 3000}
 				);
 				this.productForm.reset();
 				this.loading = false;
-		  }).catch((reason) => {
+				
+		  }).on('error', (reason) => {
 		  	this.snackBar.open(
-					`Error creating product: ${JSON.stringify(reason)}`,
+					`Error updating product: ${JSON.stringify(reason)}`,
 					'X',
 					{duration: 3000}
 				);
@@ -107,6 +117,8 @@ export class AddProductComponent implements OnInit {
 			this.productForm.reset();
 			this.loading = false;
 		}
+  	
+	  
   }
 
 }

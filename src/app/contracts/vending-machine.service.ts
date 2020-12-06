@@ -9,7 +9,7 @@ import { tap, catchError } from 'rxjs/operators';
 })
 export class VendingMachineService {
 	private contract = null;
-	private contractAddress: string = '0x28a69A74895EE7e4176603678Fe667284E54561d';
+	private contractAddress: string = '0xdb9f7314d38027A85714809216b61Da755D328e9';
 	private ABI = null;
 	private urlABIFile = 'assets/contracts/VendingMachine.json';
 
@@ -81,8 +81,28 @@ export class VendingMachineService {
     }));
   }
 
+  getProductInfo(productId) : Promise<any> {
+    return (this.contract.methods.products(productId).call({
+        from: this.auth.getMainAccount()
+    }));
+  }
+
   getLastCustomers(max: number)  : Promise<any> {
     return (this.contract.methods.getLastCustomers(max).call({
+      from: this.auth.getMainAccount()
+    }).then((customers) => {
+      let new_customers = [];
+      for (let c of customers) {
+        if (c != '0x0000000000000000000000000000000000000000') {
+          new_customers.push(c);
+        }
+      }
+      return new_customers;
+    }));
+  }
+
+  getSalesHistoryByProducts() {
+    return (this.contract.methods.getSalesHistoryByProducts(this.auth.getMainAccount()).call({
       from: this.auth.getMainAccount()
     }));
   }
@@ -93,11 +113,15 @@ export class VendingMachineService {
     }));
   }
 
-  buyProduct(productId: number, quantity: number, ether: number)  : Promise<any> {
-    return (this.contract.methods.buyProduct().send({
+  async buyProduct(productId: number, quantity: number, price: number) {
+
+    const receipt = await this.contract.methods.buyProduct(productId, quantity).send({
       from: this.auth.getMainAccount(),
-      value: ether
-    }));
+      value: quantity*price,
+      //gas: gas
+    });
+
+    return receipt;
   }
 
   createProduct(
@@ -110,6 +134,23 @@ export class VendingMachineService {
     return (this.contract.methods.addProduct(
         name, description,
         image, quantity,
+        price
+      ).send({
+        from: this.auth.getMainAccount(),
+      }));
+  }
+
+  updateProduct(
+    id: number,
+    name: string,
+    description: string,
+    image: string,
+    price: number
+  ) {
+    return (this.contract.methods.updateProduct(
+        id,
+        name, description,
+        image,
         price
       ).send({
         from: this.auth.getMainAccount(),

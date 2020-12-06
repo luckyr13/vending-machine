@@ -1,7 +1,12 @@
 <div class="container">
-	<h1 class="text-left">Add product</h1>
+	<h1 class="text-left">Update product</h1>
 	<div class="container">
 		<form class="row" [formGroup]="productForm" (ngSubmit)="onSubmit()">
+			<mat-form-field class="col" appearance="fill">
+		    <mat-label>ID:</mat-label>
+		    <input matInput formControlName="id" required>
+		  </mat-form-field>
+		  <br>
 			<mat-form-field class="col" appearance="fill">
 		    <mat-label>Name:</mat-label>
 		    <input matInput formControlName="name" required>
@@ -17,12 +22,7 @@
 		    <input matInput formControlName="image" required>
 		  </mat-form-field>
 		  <br>
-		  <mat-form-field class="col-6" appearance="fill">
-		    <mat-label>Quantity:</mat-label>
-		    <input type="number" matInput formControlName="quantity" required>
-		  </mat-form-field>
-		  <br>
-		  <mat-form-field class="col-6" appearance="fill">
+		  <mat-form-field class="col-12" appearance="fill">
 		    <mat-label>Price (in wei):</mat-label>
 		    <input type="number" matInput formControlName="price" required>
 		  </mat-form-field>
@@ -33,7 +33,7 @@
 			  	mat-flat-button
 			  	color="accent"
 			  	type="submit">
-			  	<mat-icon>save</mat-icon>&nbsp;&nbsp;Save
+			  	<mat-icon>save</mat-icon>&nbsp;&nbsp;Update
 		  	</button>
 
 		  </div>

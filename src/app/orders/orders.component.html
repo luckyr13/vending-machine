@@ -1,6 +1,6 @@
 <div class="blue-window purple-glow fadeInTransparent">
 	<mat-progress-bar style="margin-top: -10px;" color="accent" mode="indeterminate" *ngIf="loading"></mat-progress-bar>
-	<h1 class="text-center">Products</h1>
+	<h1 class="text-center">My orders</h1>
 	<div class="container text-center fadeIn" *ngIf="!error && !loading">
 		<ul class="row product-list" *ngIf="products">
 			<li class="col col-md-4 fadeIn" *ngFor="let prod of products">
@@ -18,7 +18,7 @@
 				    </p>
 				  </mat-card-content>
 				  <mat-card-actions>
-				    <button mat-flat-button (click)="buyProduct(prod.id, prod.price)" color="primary"><mat-icon>shopping_cart</mat-icon>BUY</button>
+				    <button mat-flat-button (click)="downloadProduct(prod.id)" color="warn"><mat-icon>download</mat-icon>Download</button>
 				  </mat-card-actions>
 				</mat-card>
 			</li>

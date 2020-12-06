@@ -17,9 +17,13 @@
 			<p *ngIf="totalSales">
 				<strong class="red">Total sales:</strong> {{ totalSales }}.
 			</p>
-			<p *ngIf="lastCustomers">
-				<strong class="red">Last 20 customers:</strong> {{ lastCustomers }}.
-			</p>
+			<div >
+				<strong class="red">Last 20 customers:</strong> 
+				<ul class="lastCustomers-list">
+					<li *ngFor="let c of lastCustomers">{{ c }}</li>
+				</ul>
+				
+			</div>
 		</div>
 		<div class="container text-center red fadeIn" *ngIf="error">
 			Couln't connect to Vending Machine's contract.<br>

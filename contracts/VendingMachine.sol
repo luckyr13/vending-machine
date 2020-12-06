@@ -311,13 +311,33 @@ contract VendingMachine is Ownable
 			_max = totalSales;
 		}
 		address[] memory lastCustomers = new address[](_max);
+		uint256 counter = 0;
 
-		for (uint256 i = 1; i <= _max; i = i.add(1)) {
-			Sale memory s = sales[i];
-			lastCustomers[i.sub(1)] = s.customer;
+		for (uint256 i = totalSales; i > 0 && counter < _max; i = i.sub(1)) {
+			if (!_inArray(sales[i].customer, lastCustomers)) {
+				lastCustomers[counter] = sales[i].customer;
+				counter = counter.add(1);
+			}
 		}
 
 		return lastCustomers;
+	}
+
+	/*
+	*	Search for needle in haystack
+	*/
+	function _inArray(address needle, address[] memory haystack) 
+			private pure 
+			returns(bool)
+	{
+			for (uint256 i = 0; i < haystack.length; i = i.add(1)) {
+				if (needle == haystack[i]) {
+					return true;
+				} else if (haystack[i] == address(0)) {
+					return false;
+				}
+			}
+			return false;
 	}
 
 	/*

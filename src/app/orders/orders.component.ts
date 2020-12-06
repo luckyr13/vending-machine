@@ -1,19 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { VendingMachineService } from '../contracts/vending-machine.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { AuthService } from '../auth/auth.service';
+declare const window: any;
 
 @Component({
-  templateUrl: './display-products.component.html',
-  styleUrls: ['./display-products.component.scss']
+  templateUrl: './orders.component.html',
+  styleUrls: ['./orders.component.scss']
 })
-export class DisplayProductsComponent implements OnInit {
+export class OrdersComponent implements OnInit, OnDestroy {
 	private sub1: Subscription;
   public machineName: string;
   public error: boolean = false;
   public products = [];
   public loading: boolean;
+  private prizes = {
+  	1: './assets/download/killerburger.pdf',
+  	2: './assets/download/martinsgrimoire.pdf',
+  	3: './assets/download/tom.pdf',
+  }
 
   constructor(
   	private vendingMachine : VendingMachineService,
@@ -23,9 +29,9 @@ export class DisplayProductsComponent implements OnInit {
       
   }
 
-  getProductsList() {
+  getSalesHistoryByProducts() {
     this.loading = true;
-    this.vendingMachine.getActiveProducts().then((data) => {
+    this.vendingMachine.getSalesHistoryByProducts().then((data) => {
       // Iterate over products array
       for (let id of data) {
         this.vendingMachine.getProductInfo(id).then((data) => {
@@ -93,7 +99,7 @@ export class DisplayProductsComponent implements OnInit {
   }
 
   getInitialData() {
-    this.getProductsList();
+    this.getSalesHistoryByProducts();
     // Listeners 
     this.vendingMachine.getContract().events.NewSale({}, (error, event) => {
       let customer = '';
@@ -114,23 +120,12 @@ export class DisplayProductsComponent implements OnInit {
   	}
   }
 
-  async buyProduct(id, price) {
-    price = this.auth.web3.utils.toWei(price);
-    try {
-      const receipt = await this.vendingMachine.buyProduct(id, 1, price);
-      this.snackBar.open(
-        `Transaction created: ${JSON.stringify(receipt)}`,
-        'X',
-        {duration: 3000}
-      );
+  downloadProduct(id) {
+  	const prize = this.prizes[id];
 
-    } catch (err) {
-      this.snackBar.open(
-        `Error buyProduct: ${JSON.stringify(err)}`,
-        'X',
-        {duration: 3000}
-      );
-    }
+  	if (prize) {
+  		window.location.href = prize;
+  	}
   }
 
 }
