@@ -3,7 +3,7 @@
 	<div>
 		<div class="container text-center fadeIn" *ngIf="!error">
 			<p *ngIf="machineName">
-				Hi! I'm {{ machineName }}. I am {{ machineAgeInSeconds | number:'1.2-2' }} seconds old, that's around {{ machineAgeInSeconds / (24*3600)  | number:'1.2-2' }} human days. I was created in {{ birthdate }}.
+				Hi! I'm <strong>{{ machineName }}</strong>. I am {{ machineAgeInSeconds | number:'1.2-2' }} seconds old, that's around {{ machineAgeInSeconds / (24*3600)  | number:'1.2-2' }} human days. I was created in {{ birthdate }}.
 			</p>
 			<p *ngIf="owner">
 				<strong class="red">My owner:</strong> {{ owner }}.

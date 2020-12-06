@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import detectEthereumProvider from '@metamask/detect-provider';
 import Web3 from 'web3';
 
+
 @Injectable({
   providedIn: 'root'
 })

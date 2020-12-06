@@ -2,9 +2,12 @@
 	<h1 class="text-center">Products</h1>
 	<div>
 		<div class="container text-center fadeIn" *ngIf="!error">
-			<p >
+			<h3>
 				Product list
-			</p>
+			</h3>
+			<ul *ngIf="products">
+				<li *ngFor="let prod of products">{{ prod.name }}</li>
+			</ul>
 		</div>
 		<div class="container text-center red fadeIn" *ngIf="error">
 			Couln't connect to Vending Machine's contract.<br>

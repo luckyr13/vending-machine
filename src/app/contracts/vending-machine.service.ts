@@ -100,6 +100,22 @@ export class VendingMachineService {
     }));
   }
 
+  createProduct(
+    name: string,
+    description: string,
+    image: string,
+    quantity: number,
+    price: number
+  ) {
+    return (this.contract.methods.addProduct(
+        name, description,
+        image, quantity,
+        price
+      ).send({
+        from: this.auth.getMainAccount(),
+      }));
+  }
+
   errorHandler(error: HttpErrorResponse) {
     let errorMsg = '';
     if (error.error instanceof ErrorEvent) {

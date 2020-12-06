@@ -12,6 +12,9 @@ export class DisplayProductsComponent implements OnInit {
 	private sub1: Subscription;
   public machineName: string;
   public error: boolean = false;
+  public products = [
+    { name: 'Killer burger from Mars'},
+  ];
 
   constructor(
   	private vendingMachine : VendingMachineService,
@@ -19,13 +22,17 @@ export class DisplayProductsComponent implements OnInit {
     private auth: AuthService
   ) { }
 
-  getMachineName() {
-    this.vendingMachine.getName().then((data) => {
-      const name = this.auth.web3.utils.hexToUtf8(data);
-      this.machineName = name;
+  getProductsList() {
+    this.vendingMachine.getActiveProducts().then((data) => {
+      this.snackBar.open(
+        `DATA: ${JSON.stringify(data)}`,
+        'X',
+        {duration: 3000}
+      );
+
     }).catch((error) => {
       this.snackBar.open(
-        `Error loading machine's info`,
+        `Error loading product's list`,
         'X',
         {duration: 3000}
       );
@@ -48,7 +55,7 @@ export class DisplayProductsComponent implements OnInit {
   				// INIT CONTRACT
   				try {
   					this.vendingMachine.init();
-  					this.getMachineName();
+  					this.getInitialData();
   				} catch (err) {
   					this.snackBar.open(
   						`Error loading contract: ${err}`,
@@ -61,8 +68,12 @@ export class DisplayProductsComponent implements OnInit {
   			}
   		});
   	} else {
-      this.getMachineName();
+      this.getInitialData();
     }
+  }
+
+  getInitialData() {
+    this.getProductsList();
   }
 
   ngOnDestroy() {

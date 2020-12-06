@@ -17,8 +17,9 @@ export class AppComponent implements OnInit, OnDestroy {
 
   menu = [
   	{path: 'login', label:'Sign in', icon: 'login'},
-  	{path: 'products', label:'Products', icon: 'shop'},
+  	{path: 'products', label:'Products', icon: 'shopping_cart'},
   	{path: 'about', label:'About the machine', icon: 'info'},
+    {path: 'owner/dashboard', label:'Owner', icon: 'admin_panel_settings'}
 
   ];
 

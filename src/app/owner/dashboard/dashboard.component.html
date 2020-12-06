@@ -1,0 +1,15 @@
+<div class="blue-window purple-glow-dark-bg fadeInTransparent">
+	<div class="container" *ngIf="!error">
+		<h1 class="text-center">Dashboard</h1>
+		<app-owner-add-product></app-owner-add-product>
+	</div>
+	<!-- Error Message -->
+	<div class="container" *ngIf="error">
+		<h1 class="text-center red">Error</h1>
+		<div class="text-center">
+			<p class="red">
+				Only owner can access this zone.
+			</p>
+		</div>
+	</div>
+</div>
