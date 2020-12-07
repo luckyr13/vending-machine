@@ -3,7 +3,7 @@
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.7.
 
 ## Demo online
-You can try a demo of this dApp on this link: http://super-vending-machine.s3-website.us-east-2.amazonaws.com/about
+You can try a demo of this dApp on the next link: https://bafzbeiepgv3dzvvnvj2vgfjodgctjlypdixz6yxefkzbuonlevstjvq7cu.textile.space
 
 ## Development server
 
